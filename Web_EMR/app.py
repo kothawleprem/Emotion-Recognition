@@ -6,8 +6,8 @@ import numpy as np
 app = Flask(__name__)
 
 face_classifier = cv2.CascadeClassifier(
-        'D:\Sem 6\ML MP\EMR 3\Emotion_Detection_CNN\haarcascade_frontalface_default.xml')
-classifier = load_model('D:\Sem 6\ML MP\EMR 3\Emotion_Detection_CNN\model.h5')
+        'D:\Sem 6\ML MP\EMR 3\Emotion_Recg_NB\haarcascade_frontalface_default.xml')
+classifier = load_model('D:\Sem 6\ML MP\EMR 3\Emotion_Recg_NB\model.h5')
 
 emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
@@ -19,7 +19,6 @@ def gen_emr():
         success, frame = cap.read()
         if not success:
             break
-        labels = []
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # converting frame to grayscale
         faces = face_classifier.detectMultiScale(gray)
 
@@ -44,7 +43,6 @@ def gen_emr():
                 cv2.putText(frame, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             else:
                 cv2.putText(frame, 'No Faces', (30, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.imshow('Emotion Detector', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
@@ -56,7 +54,7 @@ def gen_emr():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('video2.html')
 
 @app.route('/video')
 def video():

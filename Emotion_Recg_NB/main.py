@@ -6,12 +6,11 @@ import cv2
 import numpy as np
 
 """
-Haar Cascade classifiers are an effective way for object detection.
-Haar Cascade is a machine learning-based approach where a lot of positive and negative images are used to train the classifier. 
+Haar Cascade classifiers are an effective way for object detection. 
 """
 
 face_classifier = cv2.CascadeClassifier('D:\Sem 6\ML MP\EMR 3\Emotion_Detection_CNN\haarcascade_frontalface_default.xml')
-classifier =load_model('D:\Sem 6\ML MP\EMR 3\Emotion_Detection_CNN\model.h5')
+classifier = load_model('D:\Sem 6\ML MP\EMR 3\Emotion_Detection_CNN\model.h5')
 
 emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
